@@ -11,14 +11,9 @@ export async function fetchIndeedJobs(query, location) {
 
     const response = await axios.get(url, {
       params: {
-        query: query || 'developer',
-        location: location || 'New York',
-        page_id: 1,
+        query: query || 'manager',
+        location: location || 'Chicago',
         locality: 'us',
-        fromage: 1,
-        radius: 50,
-        sort: 'date',
-        job_type: 'permanent',
       },
       headers: {
         'X-RapidAPI-Key': RAPID_API_KEY,

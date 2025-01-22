@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { fetchIndeedJobs } from '../api/indeedApi';
 
 function IndeedJobSearch() {
-  const [query, setQuery] = useState('developer');
-  const [location, setLocation] = useState('New York');
+  const [query, setQuery] = useState('manager');
+  const [location, setLocation] = useState('Chicago');
   const [results, setResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -12,8 +12,9 @@ function IndeedJobSearch() {
     setErrorMessage('');
     try {
       const data = await fetchIndeedJobs(query, location);
-      if (data && data.results) {
-        setResults(data.results);
+      console.log('API Response:', data); 
+      if (data && data.hits) {
+        setResults(data.hits);
       } else {
         setResults([]);
       }
