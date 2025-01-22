@@ -8,7 +8,6 @@ function JobForm({ onAdd }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onAdd({ company, position, status });
-    // Reset form
     setCompany('');
     setPosition('');
     setStatus('Applied');
@@ -16,7 +15,7 @@ function JobForm({ onAdd }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
+      <div className="form-group">
         <label>Company:</label>
         <input
           type="text"
@@ -25,7 +24,7 @@ function JobForm({ onAdd }) {
           required
         />
       </div>
-      <div>
+      <div className="form-group">
         <label>Position:</label>
         <input
           type="text"
@@ -34,7 +33,7 @@ function JobForm({ onAdd }) {
           required
         />
       </div>
-      <div>
+      <div className="form-group">
         <label>Status:</label>
         <select
           value={status}

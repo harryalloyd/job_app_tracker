@@ -12,7 +12,8 @@ function IndeedJobSearch() {
     setErrorMessage('');
     try {
       const data = await fetchIndeedJobs(query, location);
-      console.log('API Response:', data); 
+      console.log('API Response:', data);
+      // NOTE: If the API returns data.hits, adapt accordingly:
       if (data && data.hits) {
         setResults(data.hits);
       } else {
@@ -24,9 +25,8 @@ function IndeedJobSearch() {
   };
 
   return (
-    <div style={{ marginTop: '2rem' }}>
-      <h2>Indeed Job Search</h2>
-      <form onSubmit={handleSearch} style={{ display: 'flex', gap: '1rem' }}>
+    <div>
+      <form onSubmit={handleSearch} className="indeed-form">
         <div>
           <label>Query:</label><br />
           <input
@@ -47,18 +47,20 @@ function IndeedJobSearch() {
       </form>
 
       {errorMessage && (
-        <p style={{ color: 'red', marginTop: '1rem' }}>{errorMessage}</p>
+        <p style={{ color: 'red' }}>{errorMessage}</p>
       )}
 
-      <ul style={{ marginTop: '1rem' }}>
-        {results.map((job) => (
-          <li key={job.jobkey || job.id} style={{ marginBottom: '1rem' }}>
-            <strong>{job.title}</strong><br />
-            <em>{job.company_name}</em> – {job.location}<br />
-            {job.snippet && job.snippet.substring(0, 100)}...
-          </li>
-        ))}
-      </ul>
+      <div className="indeed-results">
+        <ul>
+          {results.map((job) => (
+            <li key={job.jobkey || job.id}>
+              <strong>{job.title}</strong> <br />
+              <em>{job.company_name}</em> – {job.location} <br />
+              {job.snippet && job.snippet.substring(0, 100)}...
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

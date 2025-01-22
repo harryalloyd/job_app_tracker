@@ -2,17 +2,16 @@ import React from 'react';
 
 function JobStats({ jobs }) {
   const total = jobs.length;
-  const interviews = jobs.filter((job) => job.status === 'Interview').length;
-  const offers = jobs.filter((job) => job.status === 'Offer').length;
-  const rejections = jobs.filter((job) => job.status === 'Rejected').length;
+  const interviews = jobs.filter((j) => j.status === 'Interview').length;
+  const offers = jobs.filter((j) => j.status === 'Offer').length;
+  const rejects = jobs.filter((j) => j.status === 'Rejected').length;
 
   return (
     <div>
-      <h2>Stats</h2>
-      <p>Total Applications: {total}</p>
-      <p>Interviews: {interviews}</p>
-      <p>Offers: {offers}</p>
-      <p>Rejections: {rejections}</p>
+      <div className="stats-item">Total Applications: {total}</div>
+      <div className="stats-item">Interviews: {interviews}</div>
+      <div className="stats-item">Offers: {offers}</div>
+      <div className="stats-item">Rejections: {rejects}</div>
     </div>
   );
 }
