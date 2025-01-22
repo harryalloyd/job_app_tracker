@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Dashboard.css'; // <-- NEW IMPORT
 import JobForm from '../components/JobForm';
 import JobList from '../components/JobList';
 import JobStats from '../components/JobStats';
@@ -7,7 +8,6 @@ function Dashboard() {
   const [jobs, setJobs] = useState([]);
 
   const addJob = (newJob) => {
-    // Add an ID so we can delete by ID, etc.
     const jobWithId = { ...newJob, id: Date.now() };
     setJobs([...jobs, jobWithId]);
   };
@@ -17,11 +17,21 @@ function Dashboard() {
   };
 
   return (
-    <div>
-      <h1>Job Application Tracker</h1>
-      <JobForm onAdd={addJob} />
-      <JobList jobs={jobs} onDelete={deleteJob} />
-      <JobStats jobs={jobs} />
+    <div className="dashboard-container">
+      <h1 className="dashboard-header">Job Application Tracker</h1>
+
+      <div className="job-form-container">
+        <JobForm onAdd={addJob} />
+      </div>
+
+      <div className="job-list-container">
+        <JobList jobs={jobs} onDelete={deleteJob} />
+      </div>
+
+      <div className="job-stats-container">
+        <h2>Stats</h2>
+        <JobStats jobs={jobs} />
+      </div>
     </div>
   );
 }
