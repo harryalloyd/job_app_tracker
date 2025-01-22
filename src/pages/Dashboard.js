@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import './Dashboard.css'; // <-- NEW IMPORT
+import './Dashboard.css';
 import JobForm from '../components/JobForm';
 import JobList from '../components/JobList';
 import JobStats from '../components/JobStats';
+import ExternalJobSearch from '../components/ExternalJobSearch'; // <-- NEW
 
 function Dashboard() {
   const [jobs, setJobs] = useState([]);
 
   const addJob = (newJob) => {
-    const jobWithId = { ...newJob, id: Date.now() };
-    setJobs([...jobs, jobWithId]);
+    setJobs([...jobs, { ...newJob, id: Date.now() }]);
   };
 
   const deleteJob = (idToRemove) => {
@@ -32,6 +32,9 @@ function Dashboard() {
         <h2>Stats</h2>
         <JobStats jobs={jobs} />
       </div>
+
+      {/* External search for live postings */}
+      <ExternalJobSearch />
     </div>
   );
 }
